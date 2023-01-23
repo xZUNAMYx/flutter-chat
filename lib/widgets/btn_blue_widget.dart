@@ -12,7 +12,7 @@ class BtnBlueWidget extends StatelessWidget {
       style: ElevatedButton.styleFrom(
           elevation: 5, shape: const StadiumBorder(), primary: Colors.blue),
       onPressed: onPressed,
-      child: Container(
+      child: SizedBox(
         width: double.infinity,
         height: 50,
         child: Center(
