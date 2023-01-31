@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-import 'package:chat/models/users.dart';
+import 'package:chat/models/models.dart';
 
 class UsersPage extends StatefulWidget {
   const UsersPage({super.key});

@@ -1,6 +1,8 @@
+import 'package:chat/services/services.dart';
 import 'package:flutter/material.dart';
 
 import 'package:chat/widgets/widgets.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -74,6 +76,11 @@ class __FormState extends State<_Form> {
             onPressed: () {
               print(emailCtrl.text);
               print(passCtrl.text);
+
+              final authService =
+                  Provider.of<AuthSerice>(context, listen: false);
+
+              authService.login(emailCtrl.text, passCtrl.text);
             },
           )
         ],
