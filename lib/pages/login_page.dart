@@ -1,3 +1,4 @@
+import 'package:chat/helpers/helpers.dart';
 import 'package:chat/services/services.dart';
 import 'package:flutter/material.dart';
 
@@ -53,6 +54,8 @@ class __FormState extends State<_Form> {
 
   @override
   Widget build(BuildContext context) {
+    final authService = Provider.of<AuthSerice>(context);
+
     return Container(
       margin: const EdgeInsets.only(top: 30),
       padding: const EdgeInsets.symmetric(horizontal: 50),
@@ -73,15 +76,30 @@ class __FormState extends State<_Form> {
           ),
           BtnBlueWidget(
             text: 'Ingresar',
-            onPressed: () {
-              print(emailCtrl.text);
-              print(passCtrl.text);
+            onPressed: authService.autenticando
+                ? () => {}
+                : () async {
+                    //QUitar teclado de pantalla
+                    FocusScope.of(context).unfocus();
+                    final loginOk = await authService.login(
+                      emailCtrl.text.trim(),
+                      passCtrl.text.trim(),
+                    );
 
-              final authService =
-                  Provider.of<AuthSerice>(context, listen: false);
-
-              authService.login(emailCtrl.text, passCtrl.text);
-            },
+                    if (loginOk) {
+                      // TODO: Navegar a otra pantalla
+                      // Navigator.pushReplacementNamed(context, 'users');
+                      print('login correcto');
+                    } else {
+                      print('login incorrecto');
+                      // Mostrar alerta
+                      // showAlert(
+                      //   context,
+                      //   'Login incorrecto',
+                      //   'Revise sus datos nuevamente',
+                      // );
+                    }
+                  },
           )
         ],
       ),

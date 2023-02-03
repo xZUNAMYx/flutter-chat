@@ -4,7 +4,7 @@ class BtnBlueWidget extends StatelessWidget {
   const BtnBlueWidget({super.key, required this.text, required this.onPressed});
 
   final String text;
-  final Function() onPressed;
+  final Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
