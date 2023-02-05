@@ -1,9 +1,10 @@
-import 'package:chat/helpers/helpers.dart';
-import 'package:chat/services/services.dart';
 import 'package:flutter/material.dart';
 
-import 'package:chat/widgets/widgets.dart';
 import 'package:provider/provider.dart';
+
+import 'package:chat/services/services.dart';
+import 'package:chat/widgets/widgets.dart';
+import 'package:chat/helpers/helpers.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -85,19 +86,19 @@ class __FormState extends State<_Form> {
                       emailCtrl.text.trim(),
                       passCtrl.text.trim(),
                     );
-
+                    print(loginOk);
                     if (loginOk) {
                       // TODO: Navegar a otra pantalla
-                      // Navigator.pushReplacementNamed(context, 'users');
+                      Navigator.pushReplacementNamed(context, 'users');
                       print('login correcto');
                     } else {
                       print('login incorrecto');
                       // Mostrar alerta
-                      // showAlert(
-                      //   context,
-                      //   'Login incorrecto',
-                      //   'Revise sus datos nuevamente',
-                      // );
+                      showAlert(
+                        context,
+                        'Login incorrecto',
+                        'Revise sus datos nuevamente',
+                      );
                     }
                   },
           )

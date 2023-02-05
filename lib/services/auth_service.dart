@@ -7,7 +7,7 @@ import 'package:chat/global/environment.dart';
 import 'package:chat/models/models.dart';
 
 class AuthSerice with ChangeNotifier {
-  late User usuario;
+  User? usuario;
   bool _autenticando = false;
 
   bool get autenticando => _autenticando;
@@ -26,7 +26,7 @@ class AuthSerice with ChangeNotifier {
     final resp = await http.post(uri,
         body: jsonEncode(data), headers: {'Content-Type': 'application/json'});
     print(resp); // No llega aquí el código
-    // print(resp.body);
+    print(resp.body);
     autenticando = false;
     if (resp.statusCode == 200) {
       final loginResponse = loginResponseFromJson(resp.body);
