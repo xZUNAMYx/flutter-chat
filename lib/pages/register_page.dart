@@ -1,6 +1,10 @@
+import 'package:chat/helpers/helpers.dart';
 import 'package:flutter/material.dart';
 
+import 'package:provider/provider.dart';
+
 import 'package:chat/widgets/widgets.dart';
+import 'package:chat/services/services.dart';
 
 class RegisterPage extends StatelessWidget {
   const RegisterPage({super.key});
@@ -52,6 +56,8 @@ class __FormState extends State<_Form> {
 
   @override
   Widget build(BuildContext context) {
+    final authService = Provider.of<AuthSerice>(context);
+
     return Container(
       margin: const EdgeInsets.only(top: 30),
       padding: const EdgeInsets.symmetric(horizontal: 50),
@@ -78,11 +84,24 @@ class __FormState extends State<_Form> {
             textController: passCtrl,
           ),
           BtnBlueWidget(
-            text: 'Ingresar',
-            onPressed: () {
-              print(emailCtrl.text);
-              print(passCtrl.text);
-            },
+            text: 'Crear usuario',
+            onPressed: authService.autenticando
+                ? null
+                : () async {
+                    final registerOk = await authService.register(
+                      nameCtrl.text.trim(),
+                      emailCtrl.text.trim(),
+                      passCtrl.text.trim(),
+                    );
+
+                    if (registerOk == true) {
+                      // TODO:Conectar socket server
+                      showAlert(context, 'Registro exitoso',
+                          'Haz creado una cuenta para ' + nameCtrl.text);
+                    } else {
+                      showAlert(context, 'Error de registro', registerOk);
+                    }
+                  },
           )
         ],
       ),

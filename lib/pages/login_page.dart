@@ -86,13 +86,10 @@ class __FormState extends State<_Form> {
                       emailCtrl.text.trim(),
                       passCtrl.text.trim(),
                     );
-                    print(loginOk);
                     if (loginOk) {
-                      // TODO: Navegar a otra pantalla
+                      // TODO: Conectar a nuestro socket server
                       Navigator.pushReplacementNamed(context, 'users');
-                      print('login correcto');
                     } else {
-                      print('login incorrecto');
                       // Mostrar alerta
                       showAlert(
                         context,
